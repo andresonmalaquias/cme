@@ -1,0 +1,36 @@
+# Python cache and temporary files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+.env.*.local
+.venv
+env/
+venv/
+ENV/
+
+# Logs
+*.log
+logs/
+debug.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Local media and static files
+media/
+staticfiles/
+
+# Docker configuration
+docker-compose.override.yml
+
+# IDEs and editors
+.vscode/
+.idea/
+*.iml

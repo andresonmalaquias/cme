@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: cme_db
+    env_file:
+      - .env 
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    networks:
+      - internal_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./cme_backend
+    container_name: cme_backend
+    env_file:
+      - .env 
+    volumes:
+      - ./cme_backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - postgres
+    networks:
+      - internal_network
+
+  # frontend:
+  #   build:
+  #     context: ./cme_frontend
+  #   container_name: cme_frontend
+  #   volumes:
+  #     - ./cme_frontend:/app
+  #     - ./cme_frontend/src:/app/src
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
