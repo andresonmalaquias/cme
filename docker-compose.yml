@@ -39,17 +39,17 @@ services:
     networks:
       - internal_network
 
-  # frontend:
-  #   build:
-  #     context: ./cme_frontend
-  #   container_name: cme_frontend
-  #   volumes:
-  #     - ./cme_frontend:/app
-  #     - ./cme_frontend/src:/app/src
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - internal_network
+  frontend:
+    build:
+      context: ./cme_frontend
+    container_name: cme_frontend
+    volumes:
+      - ./cme_frontend:/app
+      - ./cme_frontend/src:/app/src
+    ports:
+      - "3000:3000"
+    networks:
+      - internal_network
 
 networks:
   internal_network:

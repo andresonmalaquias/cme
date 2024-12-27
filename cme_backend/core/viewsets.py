@@ -1,12 +1,14 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from core import models, serializers, filters, requests_serializer, actions
 
 
 class BaseViewSet(viewsets.ModelViewSet):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     ordering_fields = '__all__'
     ordering = ('-id',)
 
@@ -14,6 +16,7 @@ class BaseViewSet(viewsets.ModelViewSet):
 class UserViewSet(BaseViewSet):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
+    filter_backends = (DjangoFilterBackend,)
     filter_class = filters.UserFilter
 
     def create(self, request, *args, **kwargs):
@@ -33,12 +36,12 @@ class MaterialViewSet(BaseViewSet):
     serializer_class = serializers.MaterialSerializer
     filter_class = filters.MaterialFilter
 
-    @action(detail=False, methods=['POST'])
-    def next_step(self, request, *args, **kwargs):
+    @action(detail=True, methods=['POST'])
+    def next_step(self, request, pk,*args, **kwargs):
         rs = requests_serializer.MaterialSerializer(data=request.data)
         rs.is_valid(raise_exception=True)
 
-        actions.MaterialActions.create_next_step_to_material(**rs.validated_data)
+        actions.MaterialActions.create_next_step_to_material(pk, **rs.validated_data)
 
         return Response(status=status.HTTP_200_OK, data={'detail': True})
 

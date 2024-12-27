@@ -1,0 +1,219 @@
+/* Overlay do modal de rastreamento */
+.tracking-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Conteúdo principal do modal */
+.tracking-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Header do modal */
+.tracking-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.tracking-modal-header h2 {
+  margin: 0;
+}
+
+/* Campo de busca */
+.tracking-search {
+  margin-bottom: 10px;
+}
+
+.tracking-search input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Área da lista */
+.tracking-list {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Item da lista */
+.tracking-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.tracking-item:last-child {
+  border-bottom: none;
+}
+
+/* Informações do item */
+.tracking-item span {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+/* Botões de ação */
+.tracking-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-failure {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-next {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-failure:hover {
+  background-color: #d32f2f;
+}
+
+.btn-next:hover {
+  background-color: #388e3c;
+}
+
+/* Modal Next Step*/
+
+/* Overlay do modal de próximo passo */
+.next-step-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Conteúdo principal do modal */
+.next-step-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Header do modal */
+.next-step-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.next-step-modal-header h4 {
+  margin: 0;
+}
+
+/* Área do conteúdo */
+.next-step-modal-content {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+/* Checkbox de falha */
+.next-step-modal-content input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Rótulo e campo de descrição da falha */
+.next-step-modal-content label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Caixa de texto para descrição da falha */
+.next-step-modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  height: 100px;
+}
+
+/* Botões de ação (Cancelar, Confirmar) */
+.next-step-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-cancel,
+.btn-confirm {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-confirm {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #d32f2f;
+}
+
+.btn-confirm:hover {
+  background-color: #388e3c;
+}

@@ -1,0 +1,120 @@
+.list-container {
+  padding: 20px 10% 0 10%;
+  font-family: Arial, sans-serif;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Ações */
+.list-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.list-actions input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.btn-add {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-add:hover {
+  background-color: #388e3c;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+table tr.row-even {
+  background-color: #f9f9f9;
+}
+
+table tr.row-odd {
+  background-color: #fff;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Botões */
+table button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+table button:first-child {
+  background-color: #2196f3;
+  color: white;
+}
+
+table button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Estilo para a paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.pagination span {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}

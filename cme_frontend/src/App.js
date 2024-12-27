@@ -1,13 +1,11 @@
-import './App.css';
-import Nav from './components/Nav/Nav'
+import React from 'react';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
+
   return (
-    <div>
-      <Nav />
-      <main>
-        <h1>Hello teste</h1>
-      </main>
+    <div className="App">
+      <AppRoutes />
     </div>
   );
 }

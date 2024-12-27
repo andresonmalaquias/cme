@@ -11,11 +11,11 @@ class SerializerBase(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(SerializerBase):
-    password = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True, required=False)
 
     class Meta:
         model = models.User
-        fields = ['id', 'username', 'password', 'name', 'is_active', 'type']
+        fields = ['id', 'username', 'password', 'name', 'type']
 
 
 class MaterialSerializer(SerializerBase):

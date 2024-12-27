@@ -170,7 +170,7 @@ class MaterialProcess(ModelBase):
     )
     material = models.ForeignKey(
         'Material',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         db_column='id_material',
         db_index=False,
         related_name='processes',

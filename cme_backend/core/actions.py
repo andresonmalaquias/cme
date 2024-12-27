@@ -10,15 +10,15 @@ from core import models, serializers
 
 class MaterialActions:
     @staticmethod
-    def create_next_step_to_material(material_process_id: int, failure_occurred: bool, failure_description: str = None,
-                                     is_failure_recoverable: bool = None):
+    def create_next_step_to_material(material_id: int, failure_occurred: bool, failure_description: str = None):
         """
         Caso uma falha ocorrá e for recuperável, então retorna para a etapa de Recebimento
         Caso a falha não for recuperável, então Inativa o material
         Caso contrário, segue para a próxima etapa
         """
-        material_process = models.MaterialProcess.objects.get(id=material_process_id)
-        print(failure_occurred, is_failure_recoverable)
+        material_process = models.MaterialProcess.objects.filter(
+            material__id=material_id
+        ).order_by('-step_date').first()
 
         if not material_process:
             raise ValueError(f'MaterialProcess ID not found.')
@@ -26,17 +26,11 @@ class MaterialActions:
         if failure_occurred:
             material_process.failure_occurred = failure_occurred
             material_process.failure_description = failure_description
-            material_process.is_failure_recoverable = is_failure_recoverable
 
-            if is_failure_recoverable:
-                models.MaterialProcess(
-                    material=material_process.material,
-                    step=models.MaterialProcess.StepChoices.RECEIVING
-                ).save()
-            else:
-                material = material_process.material
-                material.is_active = False
-                material.save()
+            models.MaterialProcess(
+                material=material_process.material,
+                step=models.MaterialProcess.StepChoices.RECEIVING
+            ).save()
 
             material_process.save()
         else:
@@ -131,4 +125,5 @@ class MaterialActions:
         response = HttpResponse(buffer.getvalue(),
                                 content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         response['Content-Disposition'] = 'attachment; filename="serial_report.xlsx"'
+        response['Content-Length'] = str(buffer.getbuffer().nbytes)
         return response
