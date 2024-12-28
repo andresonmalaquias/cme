@@ -94,4 +94,5 @@ class MaterialService extends ServiceBase {
   }
 }
 
-export default new MaterialService();
+const MaterialServiceInsctance = new MaterialService()
+export default MaterialServiceInsctance;

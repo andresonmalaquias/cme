@@ -10,7 +10,6 @@ const api = axios.create({
 // Interceptor de requisição para adicionar o token
 api.interceptors.request.use(
   (config) => {
-    console.log('Interceptando requisição');
     const token = AuthService.getAccessToken();
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;

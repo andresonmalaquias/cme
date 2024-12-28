@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import MaterialService from "../../services/MaterialService";
 import './TrackingModal.css';
 
@@ -19,15 +19,9 @@ const TrackingModal = ({ isOpen, onClose, selectedItem }) => {
     'D': 'Distribuição'
   };
 
-  useEffect(() => {
-    if (selectedItem) {
-      loadData();
-    }
-  }, [selectedItem]);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     if (!selectedItem) return;
-
+  
     setIsLoading(true);
     setError(null);
     try {
@@ -39,7 +33,16 @@ const TrackingModal = ({ isOpen, onClose, selectedItem }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [selectedItem]);
+  
+  useEffect(() => {
+    if (selectedItem) {
+      loadData();
+    }
+  }, [selectedItem, loadData]);
+  
+
+  
 
   const mapStepToLabel = (step) => {
     return stepMapping[step] || step;

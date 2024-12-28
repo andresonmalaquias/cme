@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Table.css";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import FormModal from "../FormModal/FormModal"; // Atualize o nome se necessário
@@ -17,11 +17,7 @@ const Table = ({ extraSettings, service, columns, mapRowData, formFields }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [actionType, setActionType] = useState('add'); // 'add' | 'edit' | 'delete'
 
-  useEffect(() => {
-    loadData();
-  }, [offset, search]);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await service.get(limit, offset, search);
@@ -32,7 +28,12 @@ const Table = ({ extraSettings, service, columns, mapRowData, formFields }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [limit, offset, search, service]); // Adicione dependências relevantes
+
+  // useEffect para disparar loadData
+  useEffect(() => {
+    loadData();
+  }, [offset, search, loadData]);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);

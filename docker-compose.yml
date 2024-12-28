@@ -47,7 +47,7 @@ services:
       - ./cme_frontend:/app
       - ./cme_frontend/src:/app/src
     ports:
-      - "3000:3000"
+      - "80:80"
     networks:
       - internal_network
 

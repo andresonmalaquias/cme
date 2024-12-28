@@ -70,4 +70,5 @@ class UserService extends ServiceBase {
   }
 }
 
-export default new UserService(); // Exportando a instância única de UserService
+const UserServiceInstance = new UserService();
+export default UserServiceInstance;
